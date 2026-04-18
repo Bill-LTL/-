@@ -4,7 +4,8 @@
 #include <stddef.h>
 #include <stdlib.h>
 
-const char *getipv6;
+const char *getipv6;  //於填充函數中獲得賦值「void auto_fill(char *key, char *val)」
+
 //-----------兼容定義---
 #ifdef _WIN32
     #define POPEN _popen
@@ -34,12 +35,14 @@ const char* get_now() {
 
 
 //實現填充功能，將key對應到結構體成員並賦值
+
+/*-------- 配置結構體 ----------*/
 struct Config {
     char api[64];
     char system[64];
     char cmd_get6[128];
 } cfg;
-
+//-----------配置變量偏移量表------------
 struct {
     char *name;
     size_t offset;
@@ -48,6 +51,7 @@ struct {
     {"system", offsetof(struct Config, system)},
     {"cmd_get6", offsetof(struct Config, cmd_get6)}
 };
+//-------------------------------------
 
 //匹配key到變量,賦值value,,,,獲取IPv6命令（無則默認）
 void auto_fill(char *key, char *val) {
