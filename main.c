@@ -24,9 +24,9 @@ int main() {
     ipv6 = run_cmd(GET_IPV6);
 
     while(1){
+        
+        printf("%s %s監控中...\n", get_now(), ipv6);
         sleep(5);
-        printf("%s %s 監控中...\n", get_now(), ipv6);
-        break;
     }
 
     return 0;
