@@ -6,12 +6,19 @@
         "${workspaceFolder}/**"
       ],
       "compilerPath": "/usr/bin/gcc",
-      "cStandard": "${default}",
-      "cppStandard": "${default}",
+      "cStandard": "c17",
+      "cppStandard": "c++17",
       "intelliSenseMode": "linux-gcc-x64",
-      "compilerArgs": [
-        ""
-      ]
+      "compilerArgs": [],
+      "browse": {
+        "path": [
+          "${workspaceFolder}",
+          "/usr/include",
+          "/usr/local/include"
+        ],
+        "limitSymbolsToIncludedHeaders": true,
+        "databaseFilename": "${workspaceFolder}/.vscode/browse.vc.db"
+      }
     }
   ],
   "version": 4
