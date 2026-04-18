@@ -8,10 +8,12 @@ const char *getipv6;  //於填充函數中獲得賦值「void auto_fill(char *ke
 
 //-----------兼容定義---
 #ifdef _WIN32
+    #define SYSTEM "windows"
     #define POPEN _popen
     #define PCLOSE _pclose
     #define  GET_IPV6 "ipconfig"
 #elif defined(__linux__) || defined(__apple__)
+    #define SYSTEM "linux"
     #define POPEN popen
     #define PCLOSE pclose
     #define  GET_IPV6 getipv6
@@ -39,7 +41,7 @@ const char* get_now() {
 /*-------- 配置結構體 ----------*/
 struct Config {
     char api[64];
-    char system[64];
+    //char system[64];
     char cmd_get6[128];
 } cfg;
 //-----------配置變量偏移量表------------
@@ -48,7 +50,7 @@ struct {
     size_t offset;
 } map[] = {
     {"api",  offsetof(struct Config, api)},
-    {"system", offsetof(struct Config, system)},
+    //{"system", offsetof(struct Config, system)},
     {"cmd_get6", offsetof(struct Config, cmd_get6)}
 };
 //-------------------------------------

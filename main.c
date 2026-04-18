@@ -16,7 +16,7 @@ int main() {
     }
     fclose(fp);
     printf("%s api: %s\n", get_now(), cfg.api);
-    printf("%s system: %s\n", get_now(), cfg.system);
+    printf("%s system: %s\n", get_now(), SYSTEM);
 //--------------------系統檢查     
 
     
