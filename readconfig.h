@@ -17,7 +17,7 @@ struct Config {
     char cmd_get6[128];
     char zoneID[128];
     char recordID[128];
-    char DNS[128];
+    //char DNS[128];
     char domain[128];
 } cfg;
 
@@ -31,7 +31,7 @@ struct {
     {"cmd_get6", offsetof(struct Config, cmd_get6)},
     {"zoneID", offsetof(struct Config, zoneID)},
     {"recordID", offsetof(struct Config, recordID)},
-    {"DNS", offsetof(struct Config, DNS)},
+    //{"DNS", offsetof(struct Config, DNS)},
     {"domain", offsetof(struct Config, domain)}
 };
 //-------------------------------------
