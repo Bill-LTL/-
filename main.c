@@ -1,3 +1,19 @@
+/*-------------------------------------------------------
+Copyright (C) 2026.7.25 by Bill_LTL
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU Lesser General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+GNU Lesser General Public License for more details.
+
+You should have received a copy of the GNU Lesser General Public License
+along with this program. If not, see <https://www.gnu.org/licenses/>.
+---------------------------------------------------------*/
 #include "init.h"
 #include <unistd.h>
 char failover_core(const char *time); 
@@ -29,12 +45,15 @@ int main() {
     //---------------------------------------------
     char status = 0;
     
+
     while(status != -1) {
         read_config(&first, get_now());
         status = failover_core(get_now());
-        sleep(5);
+        printf("%s [監控] 監控循環結束，等待下一次檢查...\n", get_now());
+        sleep(atoi(cfg.waittime)); 
     }
     
+
     printf("program exited with error code: %d\n", status);
 
     return 0;
@@ -103,7 +122,7 @@ char update_dns_api(const char *time, const char *new_ip) {
         cfg.zoneID,   // 區域 ID
         cfg.recordID, // 記錄 ID
         cfg.api,      // API 令牌
-        cfg.DNS,      // 域名 
+        cfg.domain,   // 域名 
         new_ip        // 新的 IPv6 地址
     );
 

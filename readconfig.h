@@ -1,7 +1,22 @@
 /*
 實現讀取文件與自動填充配置至結構體功能（類動態變量實現）
 */
+/*-------------------------------------------------------
+Copyright (C) 2026.7.25 by Bill_LTL
 
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU Lesser General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+GNU Lesser General Public License for more details.
+
+You should have received a copy of the GNU Lesser General Public License
+along with this program. If not, see <https://www.gnu.org/licenses/>.
+---------------------------------------------------------*/
 
 void read_config(char *first, const char *time);/*讀取配置文件函數
 first用於確認是否進行過讀取操作，如已讀取過，則不打印初始化信息*/
@@ -19,6 +34,7 @@ struct Config {
     char recordID[128];
     //char DNS[128];
     char domain[128];
+    char waittime[8];
 } cfg;
 
 //-----------配置變量偏移量表------------
@@ -32,7 +48,8 @@ struct {
     {"zoneID", offsetof(struct Config, zoneID)},
     {"recordID", offsetof(struct Config, recordID)},
     //{"DNS", offsetof(struct Config, DNS)},
-    {"domain", offsetof(struct Config, domain)}
+    {"domain", offsetof(struct Config, domain)},
+    {"waittime", offsetof(struct Config, waittime)},
 };
 //-------------------------------------
 
