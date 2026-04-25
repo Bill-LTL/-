@@ -86,7 +86,7 @@ char failover_core(char *last_state, const char *time) {
             update_dns_api(time, ip6.host_ip);            
             *last_state = 1; // 切換狀態
         }else{
-            printf("%s [監測] 服務器仍然離線，DNS 已指向宿主機。\n", time);
+            printf("%s 你是怎麼讓這個bug運行起來的？？！\n", time);
         }
     } else {
         // --- 在線 ---
@@ -95,7 +95,7 @@ char failover_core(char *last_state, const char *time) {
             get_dns_v6_from_api(get_now(), ip6.target_ip);
             
             if(strcmp(ip6.target_ip, ip6.host_ip) == 0){
-                printf("%s [接管] 服務器運作中，DNS 已指向宿主機。\n", time);
+                printf("%s [接管] 宿機接管運作中，DNS 已指向宿主機。\n", time);
             }else{
                 *last_state = 0;
                 printf("%s [正常] 服務器已恢復。\n", time);
