@@ -35,6 +35,8 @@ struct Config {
     //char DNS[128];
     char domain[128];
     char waittime[8];
+    char ttl[8];
+    char proxy[8];
 } cfg;
 
 //-----------配置變量偏移量表------------
@@ -50,6 +52,8 @@ struct {
     //{"DNS", offsetof(struct Config, DNS)},
     {"domain", offsetof(struct Config, domain)},
     {"waittime", offsetof(struct Config, waittime)},
+    {"ttl", offsetof(struct Config, ttl)},
+    {"proxy", offsetof(struct Config, proxy)},
 };
 //-------------------------------------
 

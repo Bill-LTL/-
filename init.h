@@ -71,7 +71,7 @@ char *run_cmd(const char *time, const char cmd[]) {
         printf("%s 執行讀取: %s\n", time, buffer);
     }
     PCLOSE(fp);
-    
+    buffer[strcspn(buffer, "\r\n")] = 0;
     return buffer;
 }
 //-----------

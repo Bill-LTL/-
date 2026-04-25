@@ -1,6 +1,6 @@
 .vscode/
 
-
+.config
 a.out
 *.exe
 web_protect
