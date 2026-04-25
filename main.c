@@ -44,7 +44,7 @@ int main() {
 
     get_dns_v6_from_api(get_now(), ip6.sever);
     strncpy(ip6.host_ip, run_cmd(get_now(), getipv6), sizeof(ip6.host_ip) - 1);
-    strcpy(ip6.target_ip, ip6.sever);
+    
     //ip6.host_ip[strcspn(ip6.host_ip, "\r\n")] = 0;
     //---------------------------------------------
     char status = 0;
@@ -69,6 +69,7 @@ char failover_core(char *last_state, const char *time) {
     
     // 存活檢查
     char cmd[256];
+    get_dns_v6_from_api(get_now(), ip6.target_ip);
     snprintf(cmd, sizeof(cmd), "ping -6 -c 3 %s > /dev/null 2>&1", ip6.target_ip);
     
     // 執行命令並獲取狀態
