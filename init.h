@@ -39,8 +39,8 @@ char *run_cmd(const char *time, const char cmd[]);//執行命令並回傳輸出�
 
 
 const char *getipv6;  //於填充函數中獲得賦值「void auto_fill(char *key, char *val)」
-
-
+const char *ping6;  //於填充函數中獲得賦值「void auto_fill(char *key, char *val)」
+const char *cmd_0 = "> /dev/null 2>&1"; //默認ping命令後綴，丟棄輸出
 
 
 //獲取時間的函數

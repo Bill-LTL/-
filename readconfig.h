@@ -37,6 +37,7 @@ struct Config {
     char waittime[8];
     char ttl[8];
     char proxy[8];
+    char ping6[128];
 } cfg;
 
 //-----------配置變量偏移量表------------
@@ -54,6 +55,7 @@ struct {
     {"waittime", offsetof(struct Config, waittime)},
     {"ttl", offsetof(struct Config, ttl)},
     {"proxy", offsetof(struct Config, proxy)},
+    {"ping6", offsetof(struct Config, ping6)}
 };
 //-------------------------------------
 

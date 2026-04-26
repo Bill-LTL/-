@@ -32,7 +32,7 @@ int main() {
     char first = 0;
     read_config(&first, get_now());
     //優先自定義獲取ipv6命令
-    if(strcmp(cfg.cmd_get6, "default") == 0){
+    if(strcmp(cfg.cmd_get6, "default") == 0 || strcmp(cfg.cmd_get6,"") == 0){
         getipv6 = "ip -6 addr show enp6s0 | grep 'scope global' | grep '/128' | awk '{print $2}' | cut -d'/' -f1";
         printf("%s 使用預設獲取IPv6命令: %s\n", get_now(), getipv6);  
             
@@ -40,6 +40,18 @@ int main() {
         getipv6 = cfg.cmd_get6;
         printf("%s 使用配置文件獲取IPv6命令: %s\n", get_now(), getipv6);  
     }
+
+    //優先自定義ping指令
+    if(strcmp(cfg.ping6, "default") == 0 || strcmp(cfg.ping6,"") == 0){
+        ping6 = "ping -6 -c 3 ";
+        printf("%s 使用預設獲取ping命令: %s\n", get_now(), ping6);  
+            
+    }else{
+        ping6 = cfg.ping6;
+        cmd_0 = ""; //如果配置文件中有自定義ping命令，則不再使用默認丟棄輸出後綴
+        printf("%s 使用配置文件ping命令: %s\n", get_now(), ping6);  
+    }
+
     char full_cmd[512];
 
     get_dns_v6_from_api(get_now(), ip6.sever);
@@ -70,7 +82,7 @@ char failover_core(char *last_state, const char *time) {
     // 存活檢查
     char cmd[256];
     get_dns_v6_from_api(get_now(), ip6.target_ip);
-    snprintf(cmd, sizeof(cmd), "ping -6 -c 3 %s > /dev/null 2>&1", ip6.target_ip);
+    snprintf(cmd, sizeof(cmd), "%s %s %s", ping6, ip6.target_ip, cmd_0);
     
     // 執行命令並獲取狀態
     int status;
